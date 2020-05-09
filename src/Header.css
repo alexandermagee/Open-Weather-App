@@ -1,0 +1,7 @@
+.appHeader {
+    font-size: 3em;
+    border: solid red;
+    grid-area: header;
+    height: 100%;
+    
+}

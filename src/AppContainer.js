@@ -1,4 +1,9 @@
 import React from 'react';
+import './AppContainer.css';
+
+import {Header} from './Header';
+import {SearchBar} from './SearchBar';
+import {ResultCard} from './ResultCard'
 
 export class AppContainer extends React.Component {
     constructor(props){
@@ -7,7 +12,11 @@ export class AppContainer extends React.Component {
     }
     render(){
     return (
-        <h1>Weather App Container </h1>
+        <div className="mainContainer">
+            <Header />
+            <SearchBar />
+            <ResultCard />
+        </div>
     )
     }
 
