@@ -4,6 +4,8 @@ const icon = require("./Images/SunnySpellsIcon.png");
 
 export const WeatherIcon = props => {
     return (
-        <img className="weatherIcon" src={icon} alt="SunnyIcon" />
+        <div className="weatherIcon"> 
+        <img src={icon} alt="SunnyIcon" />
+        </div>
     )
 }
