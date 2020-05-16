@@ -6,14 +6,28 @@
 }
 
 .searchInput {
-    height: 30%;
-    font-size: 2em;
+    height: 40%;
+    min-width: fit-content;
     border: none;
     background-color: rgb(235, 223, 160);
 }
 
+.searchInput input {
+    display: block;
+    height: 50%;
+    font-size: 2em;
+    width: 100%;
+}
+
+.searchInput select {
+    display: block;
+    height: 50%;
+    font-size: 1.2em;
+}
+
+
 .searchButton {
-    height: 30%;
+    height: 40%;
     font-size: 2em;
     border: none;
     background-color: rgb(0, 0, 0);

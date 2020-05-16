@@ -5,9 +5,15 @@ import {SearchButton} from './SearchButton';
 
 export const SearchBar = props => {
     return (
-        <form className="searchBar">
-        <SearchInput />
-        <SearchButton />
-        </form>
+        <div className="searchBar">
+        <SearchInput 
+        country={props.country}
+        city={props.city}
+        updateUserInput={props.updateUserInput}
+        />
+        <SearchButton 
+        fetchData={props.fetchData}
+        />
+        </div>
     )
 }
