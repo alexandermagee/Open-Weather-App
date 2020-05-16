@@ -15,9 +15,10 @@
 }
 
 .weatherIcon img {
-    max-height: 200px
+    max-height: 400px
 }
 
 .weatherDescription {
     text-align: right;
+    text-transform: capitalize;
 }

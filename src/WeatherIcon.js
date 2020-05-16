@@ -1,11 +1,12 @@
 import React from 'react';
 
-const icon = require("./Images/SunnySpellsIcon.png"); 
-
 export const WeatherIcon = props => {
+
     return (
-        <div className="weatherIcon"> 
-        <img src={icon} alt="SunnyIcon" />
+        <div className="weatherIcon">
+        {(!props.loaded) ? 
+               null :
+               <img src={(`http://openweathermap.org/img/wn/${props.retrievedData.weather[0].icon}@2x.png`)} />}
         </div>
     )
 }

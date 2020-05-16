@@ -13,7 +13,8 @@ export class AppContainer extends React.Component {
         this.state = {
             country: "United Kingdom",
             city: "London",
-            retrievedData: []
+            retrievedData: null,
+            loaded: false
         }
     }
 
@@ -23,56 +24,25 @@ export class AppContainer extends React.Component {
         const city=this.state.city;
         let countryCode = Object.entries(countriesList).filter(pair => pair[1] === this.state.country)[0][0];
         
-
-        const endpoint = (`https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${APIKey}`)
-        console.log(endpoint);
-       /* const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch("api.openweathermap.org/data/2.5/weather?q=london,GB&appid=8a3a9234c4801b4a36d5bd9181cfd895", requestOptions)
-        .then(response => response.json())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
-
-          console.log(endpoint)
-
-         
-          fetch(endpoint, requestOptions)
-            .then(response => response.json())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error)); */
+        const endpoint = (`https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&units=metric&appid=${APIKey}`)
 
                 try{
-                fetch(endpoint
-                    /*"https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=Brighton,GB&appid=8a3a9234c4801b4a36d5bd9181cfd895"*//*,{
-                    headers : { 
-                      'Content-Type': 'application/json',
-                      'Accept': 'application/json'
-                     }
-              
-                    }*/)
+                fetch(endpoint)
                 .then(response => {
                     return response.json();
                 }).then(result => {
-                    /*console.log(result)*/
+                    if(result) {
                     this.setState({
-                        retrievedData: result
+                        retrievedData: result,
+                        loaded: true
                     })
-                    console.log(/*this.state.retrievedData.weather[0]*/
-                        this.state.retrievedData.main)
+                }
                 }).catch(e => console.log(e))} catch(e){
                     console.log(e);
                 }
     }
 
     updateUserInput = (dataType,data) => {
-        console.log(dataType)
         this.setState({
                 [dataType] : data
             })
@@ -90,7 +60,10 @@ export class AppContainer extends React.Component {
             city={this.state.city}
             />
 
-            <ResultCard />
+            <ResultCard 
+            retrievedData={this.state.retrievedData}
+            loaded={this.state.loaded}
+            />
         </div>
     )
     }

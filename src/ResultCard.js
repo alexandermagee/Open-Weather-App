@@ -3,13 +3,25 @@ import './ResultCard.css';
 import {WeatherIcon} from './WeatherIcon';
 import {WeatherDescription} from './WeatherDescription';
 
-export const ResultCard = props => {
+export class ResultCard extends React.Component {
+
+
+
+
+    render() {
     return (
         <section className="resultCardHolder">
         <div className="resultCard">
-        <WeatherIcon />
-        <WeatherDescription />
+        <WeatherIcon
+        retrievedData={this.props.retrievedData}
+        loaded={this.props.loaded} 
+        />
+        <WeatherDescription 
+        retrievedData={this.props.retrievedData}
+        loaded={this.props.loaded}
+        />
         </div>
         </section>
     )
+    }
 }
