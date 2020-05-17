@@ -12,15 +12,17 @@ export class AppContainer extends React.Component {
         super(props);
         this.state = {
             country: "United Kingdom",
-            city: "London",
+            city: "",
             retrievedData: null,
-            loaded: false
+            loaded: false,
+            error: false,
+            lastAttempt: null
         }
     }
 
     fetchData = () => {
 
-        const APIKey = "8a3a9234c4801b4a36d5bd9181cfd895";
+        const APIKey = "5b9b737fd9dde405c7deb8cef20c3b9b";
         const city=this.state.city;
         let countryCode = Object.entries(countriesList).filter(pair => pair[1] === this.state.country)[0][0];
         
@@ -29,12 +31,22 @@ export class AppContainer extends React.Component {
                 try{
                 fetch(endpoint)
                 .then(response => {
+                    if (response.ok){
                     return response.json();
+                    } else {
+                        this.setState({
+                            loaded: false,
+                            error: true,
+                            lastAttempt: this.state.city
+                        })
+                        throw new Error('Something went wrong!')
+                    }
                 }).then(result => {
                     if(result) {
                     this.setState({
                         retrievedData: result,
-                        loaded: true
+                        loaded: true,
+                        lastAttempt: this.state.city
                     })
                 }
                 }).catch(e => console.log(e))} catch(e){
@@ -63,6 +75,10 @@ export class AppContainer extends React.Component {
             <ResultCard 
             retrievedData={this.state.retrievedData}
             loaded={this.state.loaded}
+            error={this.state.error}
+            country={this.state.country}
+            city={this.state.city}
+            lastAttempt={this.state.lastAttempt}
             />
         </div>
     )

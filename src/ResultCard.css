@@ -8,6 +8,7 @@
     align-items: center;
 }
 
+
 .resultCard {
     padding: 10px 10px;
     border-radius: 20px;
@@ -22,3 +23,16 @@
     text-align: right;
     text-transform: capitalize;
 }
+
+.noResults {
+    grid-area: resultCard;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-align: center;
+}
+
+.noResults span {
+    text-transform: capitalize;
+}
+

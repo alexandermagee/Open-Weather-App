@@ -9,6 +9,12 @@ export const SearchInput = props => {
         props.updateUserInput(dataType,data);
     }
 
+    const handleKeyPress = e => {
+        if (e.key === "Enter"){
+            props.fetchData()
+        }
+    }
+
     return (
         <div 
         className="searchInput"
@@ -18,7 +24,8 @@ export const SearchInput = props => {
             type="text" 
             placeholder="City" 
             value={props.city} 
-            onChange={handleChange} 
+            onChange={handleChange}
+            onKeyPress={handleKeyPress} 
             />
 
             <select 
@@ -26,7 +33,10 @@ export const SearchInput = props => {
             onChange={handleChange}
             > 
                 {Object.values(countriesList).sort().map((country,i) =>{
-            return <option value={country} key={i} id="country">{country}</option>}
+                    return(country === "United Kingdom") ?
+                    <option value={country} key={i} id="country" selected="selected">{country}</option> :      
+                    <option value={country} key={i} id="country">{country}</option>
+            }
             )}
             </select>
             

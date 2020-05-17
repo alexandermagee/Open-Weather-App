@@ -10,6 +10,7 @@
     min-width: fit-content;
     border: none;
     background-color: rgb(235, 223, 160);
+    text-transform: capitalize;
 }
 
 .searchInput input {
@@ -17,6 +18,7 @@
     height: 50%;
     font-size: 2em;
     width: 100%;
+    text-transform: capitalize;
 }
 
 .searchInput select {

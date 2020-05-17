@@ -2,26 +2,30 @@ import React from 'react';
 import './ResultCard.css';
 import {WeatherIcon} from './WeatherIcon';
 import {WeatherDescription} from './WeatherDescription';
+import {WeatherHeading} from './WeatherHeading';
 
-export class ResultCard extends React.Component {
+export const ResultCard = props => {
 
-
-
-
-    render() {
+   
     return (
+        (!props.loaded) ?
+
+        (props.error ? <h2 className="noResults">No results for <span>{props.lastAttempt}</span> in {props.country}</h2> : null) :
+
         <section className="resultCardHolder">
         <div className="resultCard">
+        <WeatherHeading 
+        retrievedData={props.retrievedData}
+        />
         <WeatherIcon
-        retrievedData={this.props.retrievedData}
-        loaded={this.props.loaded} 
+        retrievedData={props.retrievedData}
+        loaded={props.loaded} 
         />
         <WeatherDescription 
-        retrievedData={this.props.retrievedData}
-        loaded={this.props.loaded}
+        retrievedData={props.retrievedData}
+        loaded={props.loaded}
         />
         </div>
         </section>
     )
     }
-}
